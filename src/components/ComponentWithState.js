@@ -22,7 +22,7 @@ export default class ComponentWithState extends Component {
      * Znacie pojęcie destrukturyzacja?
      * zaraz za komentarzem
      * możecie jej użyć destrukturyzując obiekt state - często się to przydaje jak pola są używane wielokrotnie
-     * i chcemy oszczędzić pisania this.state.****
+     * i chcemy oszczędzić pisania this.state.jakiesPole
      */
     return (
       <div>
@@ -39,6 +39,6 @@ export default class ComponentWithState extends Component {
  *
  * który również będzie posiadał swój stan (obiekt state)
  * a w nim pola todoName i status
- *
+ * przejdzmy do pliku ComponentWithState1.js
  *
  */

@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-
 /**
  * Kolejnym zadaniem będzie stworzenie nowego komponentu o nazwie ComponentWithState1
  *
@@ -19,7 +17,4 @@ import React, { Component } from "react";
  * tylko żeby była to tablica todosów
  * spróbuj wyświetlić dane które są zapisane w tablicy
  *
- *
  */
-
-export default class ComponentWithState1Solution extends Component {}
