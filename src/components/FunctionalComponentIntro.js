@@ -1,5 +1,4 @@
 import React from "react";
-
 /**
  *
  * komponenty funkcyjny ale w old schoolowym wydaniu react w wersji 16 (teraz mamy 18)

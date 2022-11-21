@@ -18,3 +18,23 @@
  * spróbuj wyświetlić dane które są zapisane w tablicy
  *
  */
+
+import React from "react";
+
+export class ComponentWithState1 extends React.Component {
+  state = {
+    todo: {
+      todoName: "Pouczyć się JSa",
+      status: true,
+    },
+  };
+
+  render() {
+    return (
+      <ul>
+        <li>{this.state.todo.todoName}</li>
+        <li>Is it done??: {this.state.todo.status ? "yes" : "no"}</li>
+      </ul>
+    );
+  }
+}

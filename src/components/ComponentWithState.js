@@ -10,10 +10,14 @@ export default class ComponentWithState extends Component {
    * obiekt ten będzie zawierać dane takie jak height (wzrost) oraz weight (waga)
    * wyświetl dane w podobny sposób jak inne pola w tym obeikcie
    */
+
   state = {
     name: "Jane",
     age: 30,
     isAdult: true,
+    lastName: "Doe",
+    users: [],
+    todo: {},
   };
 
   render() {
@@ -23,12 +27,30 @@ export default class ComponentWithState extends Component {
      * zaraz za komentarzem
      * możecie jej użyć destrukturyzując obiekt state - często się to przydaje jak pola są używane wielokrotnie
      * i chcemy oszczędzić pisania this.state.jakiesPole
+     *
+     * Przykład destrukturyzacji
+     *
+     *  const obj = {name: 'Jane'};
+     *  const {name} = obj;
+     *
      */
+
+    const { age, isAdult, lastName, name } = this.state;
+
     return (
       <div>
-        <p>Name: {this.state.name}</p>
-        <p>Age: {this.state.age}</p>
-        <p>Is Adult?: {this.state.isAdult ? "yes" : "no"}</p>
+        {/* wersja z template string */}
+        {/* <p>{`Name: ${this.state.name} Nazwisko: ${this.state.lastName}`}</p> */}
+        {/* wersja bardziej reactowa */}
+        <p>
+          Name: {name} Nazwisko: {lastName}
+        </p>
+        <p>Age: {age}</p>
+        <p>Is Adult?: {isAdult ? "yes" : "no"}</p>
+        <p>{age}</p>
+        <p>{age}</p>
+        <p>{age}</p>
+        <p>{age}</p>
       </div>
     );
   }

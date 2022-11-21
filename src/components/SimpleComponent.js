@@ -21,7 +21,24 @@ import React, { Component } from "react";
 
 export default class SimpleComponent extends Component {
   render() {
-    return <div>SimpleComponent</div>;
+    return (
+      <div>
+        <h1>Hello world</h1>
+        <TestComponent />
+        <TestComponent />
+        <TestComponent />
+      </div>
+    );
+  }
+}
+
+export class TestComponent extends Component {
+  render() {
+    return (
+      <div>
+        Hello <input type="text" /> <button>Click me</button>
+      </div>
+    );
   }
 }
 
