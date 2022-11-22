@@ -14,11 +14,15 @@ export default class ComponentWithUpdatingState extends Component {
   }
 
   /**
-   * Eevent Listenery - handlowanie eventów
+   * Eevent Listenery + mapowanie się po tablicach - handlowanie eventów
    * na przykładzie onClicka oraz onChange
+   *
+   * stwórzymy todolistę :)
    */
 
   handleClick() {}
+
+  handleChange() {}
 
   render() {
     return (

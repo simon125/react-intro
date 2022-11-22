@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { renderUsers } from "./ComponentWithUpdatingStateComplexSolution";
 
 export default class ComponentWithUpdatingStateComplex extends Component {
   state = {
@@ -14,22 +15,24 @@ export default class ComponentWithUpdatingStateComplex extends Component {
     ],
   };
 
+  /**
+   * zadanie wyświetl lsitę userów tak żeby po każdym userem znajdowały się jego taski
+   * zwróć uwagę że this.state.tasks w swojej strukturze ma userId któro jest
+   * id w obiektach this.state.users
+   *
+   * dzięki temu na ekranie powinniśmy zobaczyć userów z pogrupowanymi taskami
+   * user + jego taski
+   */
+
   render() {
     const { users, tasks } = this.state;
     return (
       <div>
         <ul>
-          {users.map((user) => {
-            return (
-              <li key={user.id}>
-                {user.name} | {user.age} | task:{" "}
-                {tasks
-                  .filter((task) => task.userId === user.id)
-                  .map((task) => task.title)
-                  .join(", ")}
-              </li>
-            );
-          })}
+          {/* ODKOMENTUJ FUNKCJE 👇renderUsers(users,tasks)👇 ŻEBY 
+          ZOBACZYĆ NA EKRANIE REZULTAT JAKI MASZ OSIĄGNĄĆ */}
+
+          {/* {renderUsers(users, tasks)} */}
         </ul>
       </div>
     );

@@ -37,6 +37,8 @@ export class TestComponent extends Component {
     return (
       <div>
         Hello <input type="text" /> <button>Click me</button>
+        SimpleComponent
+        <input type="text" />
       </div>
     );
   }

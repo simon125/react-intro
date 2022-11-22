@@ -10,7 +10,7 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
     return (
       <div>
         {/* 
-            zadanie
+            zadanie ewentualnie zadanie bardziej złozone dla chętnych poniżej 🧐
 
             Stwórz formularz który będzie mógł zmienić stan tego komponentu 
             do tego celu możesz użyć tagów form, input typu text oraz checkbox
@@ -19,7 +19,7 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
             np.
             <input type="checkbox" onChange={this.handleStatusChange} />
 
-            stan formularza/inputów możesz wyświetlić w konsoli po submicie (<form onSubmit={this.handleSubmit}></form>) bądź
+            stan formularza/inputów możesz wyświetlić w konsoli albo na ekranie po submicie (<form onSubmit={this.handleSubmit}></form>) bądź
             na onClicku po przyciśnieciu przycisku (<button onClick={this.handleClick}>Click me</button>)
 
         */}
@@ -61,6 +61,13 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
 //             dodaj walidacje pól wyświetl komunikat np przy pomocy funkcji alert()
 //             jeżeli user zostawi puste pole todoName
 //         */}
+//         <input
+//           type="date"
+// {
+//   /* przeanalizuj w konsoli co zawiera obiekt e.target */
+// }
+//           onChange={(e) => console.log(e.target.valueAsDate)}
+//         />
 //       </div>
 //     );
 //   }
