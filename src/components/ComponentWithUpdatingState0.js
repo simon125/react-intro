@@ -2,46 +2,55 @@ import React, { Component } from "react";
 
 export default class ComponentWithUpdatingState extends Component {
   state = {
-    name: "Jane",
-    age: 30,
-    isAdult: true,
+    inputValue: "",
+    todos: ["qweqwe", "QWEqwe"],
   };
-
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   /**
-   * Eevent Listenery + mapowanie się po tablicach - handlowanie eventów
-   * na przykładzie onClicka oraz onChange
-   *
-   * stwórzymy todolistę :)
+   * 1) tworzymy inputa którego będziemy obługiwać przy pomcy onChange
+   * 2) zapisaywać stan z inputa do statu this.setState
+   * 3) będziemy mieć przycik i po kliknięciu będziemy updatować stan
+   * 3a) dodawać wpisany tekst w inpucie do tablicy this.state.todos
+   * 3b) po przyciśnięciu będziemy usuwali to co mamy w inpucie
    */
 
-  handleClick() {}
+  // handleChange(){} // nie używamy tego bo trzeba to bindować - nie potrzebna komplikacja
 
-  handleChange() {}
+  handleChange = (event) => {
+    this.setState({
+      inputValue: event.target.value,
+    });
+  };
+
+  handleShowCurrentStateClick = () => {
+    console.log(this.state);
+  };
 
   render() {
     return (
       <div>
-        <p>Name: {this.state.name}</p>
-        <p>Age: {this.state.age}</p>
-        <p>Is Adult?: {this.state.isAdult ? "yes" : "no"}</p>
-
-        {/* 
-        Bardzo częstą pomyłką jest wywoływanie event handlerów od razu tzn tak jak poniżej
-
-        <button onClick={this.handleClick()}>
-          Click me to update state and rerender component
+        <input
+          value={this.state.inputValue}
+          type="text"
+          placeholder="Enter something todo..."
+          onChange={this.handleChange}
+        />
+        <button
+          onClick={() => {
+            const newTodos = [...this.state.todos, this.state.inputValue]; // tworzenie tablicy w dynamiczny sposób
+            this.setState({ todos: newTodos, inputValue: "" }); // ustawianie stanu tzn zapisujemy do zmiennej
+            // todos nową tablicę newTodos
+          }}
+        >
+          Dodaj todo
         </button>
-      */}
 
-        <button onClick={this.handleClick}>
-          Click me to update state and rerender component
+        <button onClick={this.handleShowCurrentStateClick}>
+          Wyświetl aktualny stan komponentu
         </button>
+
+        {this.state.todos.map((todo) => {
+          return <p key={todo}>{todo}</p>;
+        })}
       </div>
     );
   }
