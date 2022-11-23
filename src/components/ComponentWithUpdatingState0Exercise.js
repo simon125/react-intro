@@ -85,8 +85,75 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
   state = {
     todoName: "",
     status: false,
-    difficulty: 1, // 1-3   1 - łatwe   2 - średnio  3 - trudne
-    dueDate: new Date(),
+    difficulty: "1", // 1-3   1 - łatwe   2 - średnio  3 - trudne
+    dueDate: new Date().toLocaleString(),
+    todos: [],
+  };
+
+  // showDifficulty = () => {
+  //   const { difficulty } = this.state;
+
+  //   if (difficulty === "1") {
+  //     return "Easy";
+  //   }
+  //   if (difficulty === "2") {
+  //     return "Medium";
+  //   }
+  //   if (difficulty === "3") {
+  //     return "Hard";
+  //   }
+  // };
+
+  showDifficulty = (difficulty) => {
+    const difficultyMap = {
+      1: "Easy",
+      2: "Medium",
+      3: "Hard",
+    };
+
+    return difficultyMap[difficulty];
+  };
+
+  handleTodoNameChange = (event) => {
+    const todoName = event.target.value;
+    // this.setState({ todoName: todoName }); === this.setState({ todoName });
+    this.setState({ todoName });
+  };
+
+  handleStatusChange = (event) => {
+    this.setState({ status: event.target.checked });
+  };
+
+  handleSubmitClick = () => {
+    const { difficulty, dueDate, status, todoName } = this.state; // <===  destrukturyzacja
+
+    const newTodo = {
+      todoName,
+      status,
+      difficulty,
+      dueDate,
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo],
+      todoName: "",
+      status: false,
+      difficulty: "1",
+      dueDate: new Date().toLocaleString(),
+    });
+
+    // const newTodo = {
+    //   todoName: todoName,
+    //   status: status,
+    //   difficulty: difficulty,
+    //   dueDate: dueDate
+    // }
+
+    // const newTodo = {
+    //   todoName: this.state.todoName,
+    //   status: this.state.status,
+    //   difficulty: this.state.difficulty,
+    //   dueDate: this.state.dueDate
+    // }
   };
 
   render() {
@@ -111,15 +178,74 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
             dodaj walidacje pól wyświetl komunikat np przy pomocy funkcji alert()
             jeżeli user zostawi puste pole todoName
         */}
+
         <input
-          type="date"
-          /* przeanalizuj w konsoli co zawiera obiekt e.target */
-          onChange={(e) => console.log(e)}
+          type="text"
+          value={this.state.todoName}
+          onChange={this.handleTodoNameChange}
         />
 
-        <select onChange={undefined}>
-          <option value="easy">Easy</option>
+        <input
+          type="checkbox"
+          checked={this.state.status}
+          onChange={this.handleStatusChange}
+        />
+
+        <input
+          type="date"
+          value={this.state.dueDate}
+          /* przeanalizuj w konsoli co zawiera obiekt e.target */
+          onChange={(e) => this.setState({ dueDate: e.target.value })}
+        />
+
+        <select onChange={(e) => this.setState({ difficulty: e.target.value })}>
+          <option value={1}>Easy</option>
+          <option value={2}>Medium</option>
+          <option value={3}>Hard</option>
         </select>
+
+        <div>
+          <p>TodoName: {this.state.todoName}</p>
+        </div>
+
+        <div>
+          <p>Status: {this.state.status ? "Done" : "In progress"}</p>
+        </div>
+
+        <div>
+          <p>Difficulty: {this.showDifficulty(this.state.difficulty)}</p>
+        </div>
+
+        <div>
+          <p>Date: {this.state.dueDate}</p>
+        </div>
+
+        <button onClick={this.handleSubmitClick}>Submit</button>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Todo Name</th>
+              <th>Status</th>
+              <th>Dificulty</th>
+              <th>Due date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.todos.map((todo) => {
+              return (
+                <tr key={todo.todoName}>
+                  <td>{todo.todoName}</td>
+                  <td>
+                    <input type="checkbox" checked={todo.status} />
+                  </td>
+                  <td>{this.showDifficulty(todo.difficulty)}</td>
+                  <td>{todo.dueDate}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
