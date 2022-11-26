@@ -10,6 +10,48 @@ import React from "react";
  * definicja komponentu niech będzie w tym samym pliku
  */
 
+/**
+ * PO WPROWADZENIU DO PROPSÓW :)
+ *
+ * Już wiesz czym są propsy - jest to sposób na przekazywanie danych w drzewie komponentów
+ * pamiętamy komponent reactowy tooo? ... funckja lub klasa (klasa "pod spodem" to też funkcja :p)
+ * a do funkcji można przekazywać argumenty czyli propsy są zwykłymi argumentami dla
+ * komponentów.
+ *
+ * Dla przypomnienia czym są propsy przeanalizuj sobie przykłady w folderze Todolist
+ *
+ * 👇Anatomia propsów👇
+ *
+ * *********👇- nazwa propsa/parametru
+ * <Metric label="Liczba zadań skończonych" value={countDone()} />
+ *
+ * ******************👇-wartość propsa/parametru tutaj jest to string
+ * <Metric label="Liczba zadań skończonych" value={countDone()} />
+ *
+ * *******************************************👇-kolejny props/nazwa propsa
+ * <Metric label="Liczba zadań skończonych" value={countDone()} />
+ *
+ * **************************************************👇-wartość dla tego propsa może to być zmienna albo funkcja albo funkcja która coś zwraca
+ * <Metric label="Liczba zadań skończonych" value={countDone()} />
+ *
+ * ZADANIE:
+ * przerób poniższe komponenty na komponenty funkcyjne (przykładowe komponenty funkcyjne są w folderze Todolist)
+ * zaimplementuj je w taki sposób żeby komponenty Metric1 Metric2 oraz Metric3 można było
+ * zapisać za pomocą jednego komponentu czyli komponentu Metric
+ * żeby to osiągnąć komponent będzie musiał przyjmować propsy
+ * w których będziemy przekazywać informacje takie jak
+ * - tytuł o typie string (np. 'Work', 'Play', 'Study')
+ * - time o typie string (np. '4hrs', '32hrs')
+ * - lastWeekTime o typie string (np. '5hrs', '10hrs')
+ * przykładowe dane jak masz wyświetlić znajdują się również w pliku z designem (patrz MetricsDesign.png)
+ *
+ * następnym zadaniem będzie odwzorowanie designu tzn napisz style które dadzą nam podobny resultat z designu (patrz patrz MetricsDesign.png)
+ * ❗nie zapomnij zaimportować pliku z cssami do pliku gdzie jest komponent
+ * ❗nie zapomnij zaimportować pliku z komponentem MetricsContainer do pliku App.js - pamiętaj również o wywołaniu komponentu
+ *
+ *
+ */
+
 export class MetricsContainer extends React.Component {
   render() {
     return (
