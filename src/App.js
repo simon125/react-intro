@@ -1,22 +1,21 @@
 import "./App.css";
-import { MetricsContainer } from "./components/Metrics";
-import ComponetWithUpdatingState0 from "./components/ComponentWithUpdatingState0";
-import ComponentWithUpdatingState00 from "./components/ComponentWithUpdatingState00";
-import ComponentWithUpdatingState0Exercise from "./components/ComponentWithUpdatingState0Exercise";
+import { Statistics } from "./Todolist/Statistics";
+import { TodoForm } from "./Todolist/TodoForm";
+import { TodoList } from "./Todolist/TodoList";
 
 function App() {
+  const todos = [
+    { todoName: "Poczuyć się JSa", status: true },
+    { todoName: "Poczuyć się CSSa", status: false },
+    { todoName: "Poczuyć się HTMLa", status: false },
+    { todoName: "Poczuyć się Reacta", status: false },
+  ];
+
   return (
     <div className="App">
-      {/* <MetricsContainer /> */}
-      {/* <ComponetWithUpdatingState0 />
-      <ComponentWithUpdatingState00 /> */}
-      {/* <SimpleComponent /> */}
-      {/* <TestComponent /> */}
-      {/* <ParentComponent /> */}
-      {/* <ComponentWithState /> */}
-      {/* <ComponentWithState1 /> */}
-      {/* <SimpleComponent /> */}
-      <ComponentWithUpdatingState0Exercise />
+      <TodoForm />
+      <Statistics todoList={todos} />
+      <TodoList todoList={todos} test="hej grupo" />
     </div>
   );
 }

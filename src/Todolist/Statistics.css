@@ -1,0 +1,15 @@
+.statistics-container {
+  background-color: #3734bd;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.todo-form-title {
+  color: white;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}

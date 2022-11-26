@@ -1,0 +1,15 @@
+.todoList {
+  margin-top: 10px;
+  background-color: #3734bd;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+p {
+  color: white;
+  padding: 10px 10px 0px 10px;
+}
+.todoListItems {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,85 +1,7 @@
-// import React, { Component } from "react";
-
-// export default class ComponentWithUpdatingState0Exercise extends Component {
-//   state = {
-//     todoName: "",
-//     status: false,
-//     todos: [
-//       { status: false, todoName: "Pouczyć się JSa" },
-//       { status: false, todoName: "Pouczyć się CSSa" },
-//     ],
-//   };
-
-//   handleTodoNameChange = (event) => {
-//     this.setState({ todoName: event.target.value });
-//   };
-
-//   handleStatusChange = (event) => {
-//     console.log(event.target.checked);
-//     this.setState({ status: event.target.checked });
-//   };
-
-//   handleSubmitClick = () => {
-//     const newTodo = {
-//       todoName: this.state.todoName,
-//       status: this.state.status,
-//     };
-
-//     this.setState({
-//       todos: [...this.state.todos, newTodo],
-//       todoName: "",
-//       status: false,
-//     });
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         {/*
-//             zadanie ewentualnie zadanie bardziej złozone dla chętnych poniżej 🧐
-
-//             Stwórz formularz który będzie mógł zmienić stan tego komponentu
-//             do tego celu możesz użyć tagów form, input typu text oraz checkbox
-//             wymienione elementy musisz obsłużyć za pomocą metod handlująych oraz eventów
-
-//             np.
-//             <input type="checkbox" onChange={this.handleStatusChange} />
-
-//             stan formularza/inputów możesz wyświetlić w konsoli albo na ekranie po submicie
-//             (<form onSubmit={this.handleSubmit}></form>) bądź
-//             na onClicku po przyciśnieciu przycisku (<button onClick={this.handleClick}>Click me</button>)
-//         */}
-//         <input
-//           type="text"
-//           placeholder="Enter some todo..."
-//           value={this.state.todoName}
-//           onChange={this.handleTodoNameChange}
-//         />
-//         <input
-//           type="checkbox"
-//           name=""
-//           id=""
-//           checked={this.state.status}
-//           onChange={this.handleStatusChange}
-//         />
-//         <button onClick={this.handleSubmitClick}>Submit</button>
-//         <button onClick={() => console.log(this.state)}>
-//           Pokaz aktualny stan
-//         </button>
-//         {this.state.todos.map((todo) => {
-//           return (
-//             <p>
-//               Name: {todo.todoName} | Status:{" "}
-//               {todo.status ? "Done" : "In progress"}
-//             </p>
-//           );
-//         })}
-//       </div>
-//     );
-//   }
-// }
-
 import React, { Component } from "react";
+
+import CryingCat from "../assets/cryingcat.jpg";
+import SmilingCat from "../assets/smilingcat.jpg";
 
 export default class ComponentWithUpdatingState0Exercise extends Component {
   state = {
@@ -87,28 +9,15 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
     status: false,
     difficulty: "1", // 1-3   1 - łatwe   2 - średnio  3 - trudne
     dueDate: new Date().toLocaleString(),
+    priority: 0,
     todos: [],
   };
 
-  // showDifficulty = () => {
-  //   const { difficulty } = this.state;
-
-  //   if (difficulty === "1") {
-  //     return "Easy";
-  //   }
-  //   if (difficulty === "2") {
-  //     return "Medium";
-  //   }
-  //   if (difficulty === "3") {
-  //     return "Hard";
-  //   }
-  // };
-
   showDifficulty = (difficulty) => {
     const difficultyMap = {
-      1: "Easy",
-      2: "Medium",
-      3: "Hard",
+      1: <h3>Easy</h3>,
+      2: <h2>Medium</h2>,
+      3: <h1>Hard</h1>,
     };
 
     return difficultyMap[difficulty];
@@ -116,7 +25,6 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
 
   handleTodoNameChange = (event) => {
     const todoName = event.target.value;
-    // this.setState({ todoName: todoName }); === this.setState({ todoName });
     this.setState({ todoName });
   };
 
@@ -124,14 +32,19 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
     this.setState({ status: event.target.checked });
   };
 
+  handlePriorityChange = (event) => {
+    this.setState({ priority: event.target.value });
+  };
+
   handleSubmitClick = () => {
-    const { difficulty, dueDate, status, todoName } = this.state; // <===  destrukturyzacja
+    const { difficulty, dueDate, status, todoName, priority } = this.state; // <===  destrukturyzacja
 
     const newTodo = {
       todoName,
       status,
       difficulty,
       dueDate,
+      priority,
     };
     this.setState({
       todos: [...this.state.todos, newTodo],
@@ -139,6 +52,7 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
       status: false,
       difficulty: "1",
       dueDate: new Date().toLocaleString(),
+      priority: 0,
     });
 
     // const newTodo = {
@@ -192,6 +106,22 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
         />
 
         <input
+          type="range"
+          min={0}
+          max={10}
+          value={this.state.priority}
+          onChange={this.handlePriorityChange}
+        />
+
+        {/*
+
+1) tworzymy stan dla pola priority
+2) piszemy metode handlującą zmianę inputu change zapisujemy wartosć do stanu this.setState
+3) dodajemy wartość przy tworzeniu nowego todo - patrz handleSubmitClick
+4) wyśweitlanie ogarniemy razem ewentualnie dla chętnych dodaj nową komórke w tabelce
+
+*/}
+        <input
           type="date"
           value={this.state.dueDate}
           /* przeanalizuj w konsoli co zawiera obiekt e.target */
@@ -204,20 +134,42 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
           <option value={3}>Hard</option>
         </select>
 
-        <div>
-          <p>TodoName: {this.state.todoName}</p>
-        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            margin: 20,
+          }}
+        >
+          <div>
+            <p>
+              <b>TodoName:</b> {this.state.todoName}
+            </p>
+          </div>
 
-        <div>
-          <p>Status: {this.state.status ? "Done" : "In progress"}</p>
-        </div>
+          <div>
+            <p>
+              <b>Status:</b> {this.state.status ? "Done" : "In progress"}
+            </p>
+          </div>
 
-        <div>
-          <p>Difficulty: {this.showDifficulty(this.state.difficulty)}</p>
-        </div>
+          <div>
+            <p>
+              <b>Difficulty:</b> {this.showDifficulty(this.state.difficulty)}
+            </p>
+          </div>
 
-        <div>
-          <p>Date: {this.state.dueDate}</p>
+          <div>
+            <p>
+              <b>Date:</b> {this.state.dueDate}
+            </p>
+          </div>
+
+          <div>
+            <p>
+              <b>Priority:</b> {this.state.priority}
+            </p>
+          </div>
         </div>
 
         <button onClick={this.handleSubmitClick}>Submit</button>
@@ -229,6 +181,7 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
               <th>Status</th>
               <th>Dificulty</th>
               <th>Due date</th>
+              <th>Priority</th>
             </tr>
           </thead>
           <tbody>
@@ -237,10 +190,16 @@ export default class ComponentWithUpdatingState0Exercise extends Component {
                 <tr key={todo.todoName}>
                   <td>{todo.todoName}</td>
                   <td>
-                    <input type="checkbox" checked={todo.status} />
+                    <img
+                      width={100}
+                      height={100}
+                      src={todo.status ? SmilingCat : CryingCat}
+                      alt="cat"
+                    />
                   </td>
                   <td>{this.showDifficulty(todo.difficulty)}</td>
                   <td>{todo.dueDate}</td>
+                  <td>{todo.priority}/10</td>
                 </tr>
               );
             })}
