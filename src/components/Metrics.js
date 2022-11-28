@@ -1,5 +1,7 @@
 import React from "react";
 import { Metric } from "./Metric";
+import classes from "./Metrics.module.css";
+import "./Metrics.css";
 
 /**
  * Stówrz komponent który będzie wyświetlał dokładnie taką samą treść jak na
@@ -62,33 +64,37 @@ const metrics = [
     title: "Work",
     time: "4hrs",
     lastWeekTime: "5hrs",
+    bgColor: "orange",
   },
   {
     title: "Play",
     time: "32hrs",
     lastWeekTime: "5hrs",
+    bgColor: "skyblue",
   },
   {
     title: "Study",
     time: "4hrs",
     lastWeekTime: "8hrs",
+    bgColor: "red",
   },
   {
     title: "Exercise",
     time: "4hrs",
     lastWeekTime: "5hrs",
+    bgColor: "green",
   },
   {
     title: "Social",
     time: "32hrs",
     lastWeekTime: "5hrs",
-    bgColor: 'yellow'
+    bgColor: "purple",
   },
   {
     title: "Self Care",
     time: "4hrs",
     lastWeekTime: "8hrs",
-    bgColor: 'purple'
+    bgColor: "yellow",
   },
 ];
 
@@ -96,15 +102,9 @@ const metrics = [
 
 export const MetricsContainer = () => {
   return (
-    <section>
+    <section className={classes.metricsContainer}>
       {metrics.map((metricData) => (
-        <Metric
-          key={metricData.title}
-          title={metricData.title}
-          time={metricData.time}
-          lastWeekTime={metricData.lastWeekTime}
-          bgColor={}
-        />
+        <Metric key={metricData.title} metricData={metricData} />
       ))}
       {/* <Metric title="" time="" lastWeekTime="" />
       <Metric title={} time={} lastWeekTime={} />
