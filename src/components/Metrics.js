@@ -1,4 +1,5 @@
 import React from "react";
+import { Metric } from "./Metric";
 
 /**
  * Stówrz komponent który będzie wyświetlał dokładnie taką samą treść jak na
@@ -52,48 +53,101 @@ import React from "react";
  *
  */
 
-export class MetricsContainer extends React.Component {
-  render() {
-    return (
-      <div>
-        <Metric1 />
-        <Metric2 />
-        <Metric3 />
-      </div>
-    );
-  }
-}
+/**
+ * podejście funkcyjne
+ */
 
-class Metric1 extends React.Component {
-  render() {
-    return (
-      <section>
-        <h2>Work</h2>
-        <p>32hrs</p>
-        <p>Last week - 36hrs</p>
-      </section>
-    );
-  }
-}
-class Metric2 extends React.Component {
-  render() {
-    return (
-      <section>
-        <h2>Play</h2>
-        <p>10hrs</p>
-        <p>Last week - 8hrs</p>
-      </section>
-    );
-  }
-}
-class Metric3 extends React.Component {
-  render() {
-    return (
-      <section>
-        <h2>Study</h2>
-        <p>4hrs</p>
-        <p>Last week - 7hrs</p>
-      </section>
-    );
-  }
-}
+const metrics = [
+  {
+    title: "Work",
+    time: "4hrs",
+    lastWeekTime: "5hrs",
+  },
+  {
+    title: "Play",
+    time: "32hrs",
+    lastWeekTime: "5hrs",
+  },
+  {
+    title: "Study",
+    time: "4hrs",
+    lastWeekTime: "8hrs",
+  },
+  {
+    title: "Exercise",
+    time: "4hrs",
+    lastWeekTime: "5hrs",
+  },
+  {
+    title: "Social",
+    time: "32hrs",
+    lastWeekTime: "5hrs",
+    bgColor: 'yellow'
+  },
+  {
+    title: "Self Care",
+    time: "4hrs",
+    lastWeekTime: "8hrs",
+    bgColor: 'purple'
+  },
+];
+
+// metrics.map((metricData)=>/* komponent z propsami z metricData */);
+
+export const MetricsContainer = () => {
+  return (
+    <section>
+      {metrics.map((metricData) => (
+        <Metric
+          key={metricData.title}
+          title={metricData.title}
+          time={metricData.time}
+          lastWeekTime={metricData.lastWeekTime}
+          bgColor={}
+        />
+      ))}
+      {/* <Metric title="" time="" lastWeekTime="" />
+      <Metric title={} time={} lastWeekTime={} />
+      <Metric title time lastWeekTime /> */}
+    </section>
+  );
+};
+
+const addTwoNumbers = (a, b) => a + b;
+
+addTwoNumbers(1, 2);
+addTwoNumbers(3, 4);
+addTwoNumbers(4, 5);
+
+/**
+ * podejście klasowe
+ *
+ */
+// export class MetricsContainer extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <Metric title="Work" time="4hrs" lastWeekTime="5hrs" />
+//         {/* <Metric1 />
+//         <Metric2 />
+//         <Metric3 /> */}
+//       </div>
+//     );
+//   }
+// }
+
+// /**
+//  * jak działają propsy w komponencie klasowym
+//  */
+
+// class Metric extends React.Component {
+//   render() {
+//     return (
+//       <section>
+//         <h2>{this.props.title}</h2>
+//         <p>{this.props.time}</p>
+//         <p>{this.props.lastWeekTime}</p>
+//       </section>
+//     );
+//   }
+// }
