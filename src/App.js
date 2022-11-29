@@ -5,18 +5,11 @@ import { TodoItem } from "./components/TodoItem";
 import { TodoForm } from "./components/TodoForm";
 
 function App() {
-  const [todoName, setTodoName] = useState("");
-  const [status, setStatus] = useState(false);
   const [todos, setTodos] = useState([]);
 
-  const handleChange = (event) => {
-    setTodoName(event.target.value);
-  };
-
-  const handleSubmitClick = () => {
+  const handleSubmitClick = (todoName) => {
     // dodawanie todoName do tabicy
     setTodos([...todos, todoName]);
-    setTodoName("");
   };
 
   const handleDeleteClick = (todoToDelete) => {
@@ -25,9 +18,6 @@ function App() {
     const newTodos = todos.filter((todo) => todoToDelete !== todo);
     setTodos(newTodos);
   };
-
-  const handleStatusChange = () => {};
-
   /**
    * 1) komórka pamięci dla todos - czyli nowy useState z pustą tablicą jako wartosc poczatkowa
    * 2) button z onClickiem - na onCLicku wywołaj funkcje która będzie dodawać todoName do tablicy
@@ -37,13 +27,8 @@ function App() {
 
   return (
     <div className="App">
-      <TodoForm
-        todoName={todoName}
-        status={status}
-        handleChange={handleChange}
-        handleStatusChange={handleStatusChange}
-        handleSubmitClick={handleSubmitClick}
-      />
+      <TodoForm handleSubmitClick={handleSubmitClick} />
+
       <ul>
         {todos.map((todo123) => {
           return (
