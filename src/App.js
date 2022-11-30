@@ -1,87 +1,42 @@
-import logo from "./logo.svg";
-import "./App.css";
-import React, { useState } from "react";
-import { TodoItem } from "./components/TodoItem";
-import { TodoForm } from "./components/TodoForm";
+import { Navigation } from "./components/Navigation";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  const handleSubmitClick = (todoName) => {
-    // dodawanie todoName do tabicy
-    setTodos([...todos, todoName]);
-  };
-
-  const handleDeleteClick = (todoToDelete) => {
-    //  tworzymy nową tablicę odfiltrowaną
-    // ustawiamy ją jako nowy stan
-    const newTodos = todos.filter((todo) => todoToDelete !== todo);
-    setTodos(newTodos);
-  };
-  /**
-   * 1) komórka pamięci dla todos - czyli nowy useState z pustą tablicą jako wartosc poczatkowa
-   * 2) button z onClickiem - na onCLicku wywołaj funkcje która będzie dodawać todoName do tablicy
-   * oraz będzie czyścić todoName tak żeby można było wpisać nowego todosa
-   * 3) wyświetl tablice todos używając {todos.map( tutaj zwróć elemnt JSX z treścią todosa )}
-   */
-
   return (
-    <div className="App">
-      <TodoForm handleSubmitClick={handleSubmitClick} />
+    <div>
+      <Navigation />
+      {/* 
+          Wyświetlanie warunkowe komponentów
+          w js możemy wyświetlać elemnety w zależności od naszych warunków
+          np jeżeli checkbox jest zaznaczony czyli np stan z useState ma wartość true
+          możemy wyświetlić jakiś komponent albo go schować
 
-      <ul>
-        {todos.map((todo123) => {
-          return (
-            <TodoItem
-              key={todo123}
-              todo={todo123}
-              onDeleteClick={() =>
-                console.log(`Todo które chcę edytować: ${todo123}`)
-              }
-              funkcjaUsuwajacaPrzekazanaWPropsach={() =>
-                handleDeleteClick(todo123)
-              }
-            />
-          );
-        })}
-      </ul>
+          do tej pory robiliśmy już wyświetlanie warunkowe za pomocą ternary operatora
+          tzn.
+
+          jakaśZmienna ? 'In Progress' : 'Done'
+
+          podobny efekt można osiągnąć zapisując operatora logicznego &&
+
+          np
+
+          jakaśZmienna && 'In Progress'
+
+          czyli jeżeli "jakaśZmienna" ma wartość true to wyświetli nam się słowo 'In progres' 
+          natomiast jezeli jest to false tekst powinien być schowany
+
+          taka sama zasada dotyczy komponentów reactowych mozemy je wyświetlać pod określonymi warunkami
+          a te warunki oczywiście konstruujemy sami
+
+          ZADANIE
+          jako zadanie dodaj dwa inputy typu radio button które będą miały ten sam name oraz inne 
+          stałe value czyli np jakiś string value="wartość1"
+          niech inputy ustawiają stan w tym samym komponencie 
+          zmiana ta ma się wywoływać na event onChange
+          wartość jaka ma być ustawiana w stanie to value wyciągnięte z eventu - czyli: event.target.value
+          pamiętaj żeby zaimportować useState
+      */}
     </div>
   );
 }
 
 export default App;
-
-/**
- * funkcja która usuwa kliknięte todo - usuwa czyli updatuje tablice todos
- *() => {
-          // tworzenie nowej tablicy bez wciśniętego elementu
-          const newTodos = todos.filter(
-            (currentTodo) => todo !== currentTodo
-          );
-          // // aktualizacja stanu todos czyli ustaiwamy zmienną newTodos jako nową wartośc stanu todos
-          setTodos(newTodos);
-        }
- * 1) użyj setTodos
- * 2) użyj metody filter    [].filter((el)=> warunek)
- * 3) zapisz nową tablice  patrz pkt 1
- * 4) użyj aktualnie wcisniętego todo - masz do niego dostęp odwołując się
- * do zmiennej todo
- */
-// class App1 extends React.Component {
-//   state = {
-//     todoName: "",
-//     todo: [],
-//   };
-
-//   handleChange = (event) => {
-//     this.setState({});
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         <input type="text" onChange={this.handleChange} />
-//       </div>
-//     );
-//   }
-// }

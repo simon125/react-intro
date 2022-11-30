@@ -1,7 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { IncrementButton } from "./components/IncrementButton";
 
-export const NewApp = () => {
+export const Counter = () => {
   const [counter, setCounter] = useState(0);
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const onNavItemChange = (e) => {
+    setCurrentPage(e.target.value);
+    console.log(e.target.value);
+  };
 
   const handleClick = () => {
     setCounter(100);
@@ -22,7 +29,6 @@ export const NewApp = () => {
   const handleDecrementClick = () => {
     setCounter(counter - 1);
   };
-
   return (
     <div>
       <h1>{counter}</h1>
@@ -39,12 +45,4 @@ export const NewApp = () => {
       {/* <button onClick={}>-5</button> */}
     </div>
   );
-};
-
-const IncrementButton = (props) => {
-  console.log(props.zmienna1);
-  console.log(props.zmienna2);
-
-  // w obiekcie props jest pole onIncrementClickCokolwiek któro przechowuje funckje
-  return <button onClick={props.onIncrementClickCokolwiek}>+1</button>;
 };
