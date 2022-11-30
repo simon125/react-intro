@@ -1,9 +1,16 @@
 import React from "react";
 
 export const IncrementButton = (props) => {
-  console.log(props.zmienna1);
-  console.log(props.zmienna2);
+  console.log(props.wartoscKtoraMaBycDodana);
 
   // w obiekcie props jest pole onIncrementClickCokolwiek któro przechowuje funckje
-  return <button onClick={props.onIncrementClickCokolwiek}>+1</button>;
+  return (
+    <button
+      onClick={() =>
+        props.onIncrementClickCokolwiek(props.wartoscKtoraMaBycDodana)
+      }
+    >
+      +{props.wartoscKtoraMaBycDodana}
+    </button>
+  );
 };
