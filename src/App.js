@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import { TodoList } from "./pages/TodoList/TodoList";
 import { Home } from "./pages/Home/Home";
@@ -11,6 +11,7 @@ function App() {
   const handleCurrentPageChange = (event) => {
     setCurrentPage(event.target.value);
   };
+  console.log(123);
 
   return (
     <div>

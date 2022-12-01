@@ -17,7 +17,7 @@ export const EditTodoModal = (props) => {
         <a
           href="#cancel"
           role="button"
-          class="secondary"
+          className="secondary"
           onClick={props.onCancelClick}
         >
           Cancel

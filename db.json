@@ -4,13 +4,13 @@
       "id": 1,
       "title": "json-server",
       "content": "typicode",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": 2,
       "title": "json-server-123",
       "content": "typicode",
-      "status": "todo"
+      "status": "done"
     },
     {
       "id": 3,
@@ -24,5 +24,12 @@
       "content": "John Doe",
       "status": "todo"
     }
+  ],
+  "todos": [
+    { "todoName": "Poczuyć się JSa", "id": "1", "status": "done" },
+    { "todoName": "Poczuyć się HTMLa", "id": "2", "status": "in-progress" },
+    { "todoName": "Poczuyć się CSSa", "id": "4", "status": "todo" },
+    { "todoName": "Poczuyć się Reacta", "id": "5", "status": "in-progress" },
+    { "todoName": "Poczuyć się Reduxa", "id": "6", "status": "todo" }
   ]
 }
