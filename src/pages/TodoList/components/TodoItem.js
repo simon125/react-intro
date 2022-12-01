@@ -1,11 +1,16 @@
 export const TodoItem = (props) => {
   return (
-    <li>
-      {props.todo}
-      <button onClick={props.onDeleteClick}>Edit</button>
-      <button onClick={props.funkcjaUsuwajacaPrzekazanaWPropsach}>
-        Delete
-      </button>
-    </li>
+    <tr>
+      <td>{props.todoName}</td>
+      <td>{props.status}</td>
+      <td>
+        <button onClick={props.onEditClick}>Edit</button>
+      </td>
+      <td>
+        <button onClick={props.funkcjaUsuwajacaPrzekazanaWPropsach}>
+          Delete
+        </button>
+      </td>
+    </tr>
   );
 };

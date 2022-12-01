@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { EditTodoModal } from "./components/EditTodoModal";
 import { TodoItem } from "./components/TodoItem";
-import { TodoForm } from "./components/TodoForm";
 
 export const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    { todoName: "test", status: "done", id: Math.random() },
+    { todoName: "test", status: "done", id: Math.random() },
+    { todoName: "test", status: "done", id: Math.random() },
+  ]);
 
-  const handleSubmitClick = (todoName) => {
-    // dodawanie todoName do tabicy
-    setTodos([...todos, todoName]);
-  };
+  const [openModal, setOpenModal] = useState(false);
 
   const handleDeleteClick = (todoToDelete) => {
     //  tworzymy nową tablicę odfiltrowaną
@@ -16,33 +17,42 @@ export const TodoList = () => {
     const newTodos = todos.filter((todo) => todoToDelete !== todo);
     setTodos(newTodos);
   };
-  /**
-   * 1) komórka pamięci dla todos - czyli nowy useState z pustą tablicą jako wartosc poczatkowa
-   * 2) button z onClickiem - na onCLicku wywołaj funkcje która będzie dodawać todoName do tablicy
-   * oraz będzie czyścić todoName tak żeby można było wpisać nowego todosa
-   * 3) wyświetl tablice todos używając {todos.map( tutaj zwróć elemnt JSX z treścią todosa )}
-   */
+
+  const handleEditClick = () => {
+    setOpenModal(true);
+  };
 
   return (
     <div className="App">
-      <TodoForm handleSubmitClick={handleSubmitClick} />
-
-      <ul>
-        {todos.map((todo123) => {
-          return (
-            <TodoItem
-              key={todo123}
-              todo={todo123}
-              onDeleteClick={() =>
-                console.log(`Todo które chcę edytować: ${todo123}`)
-              }
-              funkcjaUsuwajacaPrzekazanaWPropsach={() =>
-                handleDeleteClick(todo123)
-              }
-            />
-          );
-        })}
-      </ul>
+      <h1>Todo list</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {todos.map((todo) => {
+            return (
+              <TodoItem
+                key={todo.id}
+                todoName={todo.todoName}
+                status={todo.status}
+                onDeleteClick={() =>
+                  console.log(`Todo które chcę edytować: ${todo}`)
+                }
+                onEditClick={handleEditClick}
+                funkcjaUsuwajacaPrzekazanaWPropsach={() =>
+                  handleDeleteClick(todo)
+                }
+              />
+            );
+          })}
+        </tbody>
+      </table>
+      {openModal && <EditTodoModal onCancelClick={() => setOpenModal(false)} />}
     </div>
   );
 };

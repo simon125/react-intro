@@ -3,32 +3,26 @@
     {
       "id": 1,
       "title": "json-server",
-      "author": "typicode"
+      "content": "typicode",
+      "status": "todo"
     },
     {
       "id": 2,
       "title": "json-server-123",
-      "author": "typicode"
+      "content": "typicode",
+      "status": "todo"
     },
     {
       "id": 3,
       "title": "json-server-345",
-      "author": "typicode"
+      "content": "typicode",
+      "status": "todo"
     },
     {
-      "id": "asdfasdf",
+      "id": 4,
       "title": "Super post",
-      "author": "John Doe"
+      "content": "John Doe",
+      "status": "todo"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
