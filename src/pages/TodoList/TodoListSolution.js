@@ -8,6 +8,7 @@ export const TodoList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [filterBy, setFilterBy] = useState("");
+  const [refetchAfterDelete, setRefetchAfterDelete] = useState(false);
 
   // ten useEffect wykonuje się tylko raz przy zamontowaniu komponentu
   // ponieważ ma pustą tablice z zależnościami (2 paremetr w useEffect)
@@ -57,7 +58,7 @@ export const TodoList = () => {
       .then((response) => response.json())
       .then((data) => setTodos(data))
       .finally(() => setIsLoading(false));
-  }, [filterBy]);
+  }, [filterBy, refetchAfterDelete]);
 
   const handleDeleteClick = (idOfTodoToDelete) => {
     /**
@@ -113,6 +114,11 @@ export const TodoList = () => {
      * },[zmienna1, zmienna2, zmienna3])
      *
      */
+    fetch(`http://localhost:4000/todos/${idOfTodoToDelete}`, {
+      method: "DELETE",
+    }).then(() => {
+      setRefetchAfterDelete(!refetchAfterDelete);
+    });
   };
 
   const handleEditClick = () => {

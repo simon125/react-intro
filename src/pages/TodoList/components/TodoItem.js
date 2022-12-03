@@ -7,9 +7,7 @@ export const TodoItem = (props) => {
         <button onClick={props.onEditClick}>Edit</button>
       </td>
       <td>
-        <button onClick={props.funkcjaUsuwajacaPrzekazanaWPropsach}>
-          Delete
-        </button>
+        <button onClick={props.onDeleteClick}>Delete</button>
       </td>
     </tr>
   );
