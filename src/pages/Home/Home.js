@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Circles } from "react-loader-spinner";
+import { Modal } from "../../components/Modal";
 
 export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFilterChange = (event) => {
     setFilterBy(event.target.value);
@@ -33,9 +35,24 @@ export const Home = () => {
   // tablica zależności - w zależności od tego co jest w tej tablicy - jeżeli wartość któregoś elementu
   // się zmieni spowoduje to wywołanie funkcji z pierwszego parametru useEffect
 
+  const handleChange = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   console.log("Home się renderuje");
   return (
     <div>
+      <input type="checkbox" checked={isModalOpen} onChange={handleChange} />
+      {isModalOpen && (
+        <Modal>
+          <h1>Cześć grupo 15 :)</h1>
+          <input
+            type="checkbox"
+            checked={isModalOpen}
+            onChange={handleChange}
+          />
+        </Modal>
+      )}
       <h1>Aplikacja na Twoje zadania</h1>
       <p>Z nią już nigdy nie zapomnisz co masz zrobić</p>
       <p>

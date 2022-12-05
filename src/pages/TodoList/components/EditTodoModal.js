@@ -2,17 +2,29 @@ import React from "react";
 import { Modal } from "../../../components/Modal";
 
 export const EditTodoModal = (props) => {
+  console.log(props.todoToEdit);
+
   return (
     <Modal>
       <h3>Confirm your action!</h3>
-      <input type="text" placeholder="New title" />
-      <textarea
-        name=""
-        placeholder="New content"
+      <input
+        type="text"
+        name="todoName"
+        placeholder="New title"
+        value={props.todoToEdit.todoName}
+        onChange={props.onEditFormChange}
+      />
+
+      <select
+        name="status"
         id=""
-        cols="30"
-        rows="10"
-      ></textarea>
+        value={props.todoToEdit.status}
+        onChange={props.onEditFormChange}
+      >
+        <option value="todo">Todo</option>
+        <option value="in-progress">In progress</option>
+        <option value="done">Done</option>
+      </select>
       <footer>
         <a
           href="#cancel"
@@ -22,7 +34,7 @@ export const EditTodoModal = (props) => {
         >
           Cancel
         </a>
-        <a href="#confirm" role="button">
+        <a href="#confirm" role="button" onClick={props.onEditConfirmClick}>
           Confirm
         </a>
       </footer>

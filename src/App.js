@@ -4,26 +4,26 @@ import { TodoList } from "./pages/TodoList/TodoList";
 import { Home } from "./pages/Home/Home";
 import { Statistics } from "./pages/Statistics/Statistics";
 import { TodoForm } from "./pages/TodoForm/TodoForm";
+import { Routes, Route } from "react-router-dom";
+import { Counter } from "./pages/Counter/Counter";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-
-  const handleCurrentPageChange = (event) => {
-    setCurrentPage(event.target.value);
-  };
-  console.log(123);
-
   return (
     <div>
-      <Navigation
-        currentPage={currentPage}
-        onNavItemChange={handleCurrentPageChange}
-      />
+      <Navigation />
+
       <div style={{ marginTop: 20 }}>
-        {currentPage === "home" && <Home />}
-        {currentPage === "todoform" && <TodoForm />}
-        {currentPage === "todolist" && <TodoList />}
-        {currentPage === "statistics" && <Statistics />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/todo-form" element={<TodoForm />} />
+          <Route path="/todolist" element={<TodoList />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/counter/:value" element={<Counter />} />
+          <Route
+            path="*"
+            element={<img src="https://http.cat/404" alt="404" />}
+          />
+        </Routes>
       </div>
     </div>
   );

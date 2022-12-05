@@ -36,6 +36,36 @@ export const TodoForm = () => {
      *
      * w razie potrzeby możesz skorzystać z zaproponowanej przezemnie wersji w pliku TodoFormSolution.js
      */
+
+    // przygotowanie obiektu todo do wysłania go do backendu - tzn ten obiekt będzie zapisany
+    // w naszej fejkowej bazie danych (nie sugeruj się słowem fejkowa - mechanika i zasada działania fetcha jest identyczna jak dla prawdziwych przypadków)
+    const todoToCreate = {
+      todoName, // przypominam o skrótowym zapisie tzn. jeżeli klucz jest takim samym słowem co zmienna z wartością można zapisać tylko klucz
+      // tzn zapis samego { todoName } jest ekwiwalentem { todoName: todoName }
+      status, // status tak samo jak todoName używa takiego samego słowa jako klucz i zmiennej do trzymania wartości dla statusu
+    };
+
+    // pod tym komentarzem powinno znajdować się wywołanie fetcha
+    // do tworzenia nowego todo
+    // czyli request http który tworzy nowy rekord ma się wywoływać gdy user kliknie przycisk submit
+    fetch("http://localhost:4000/todos", {
+      method: "POST", // wskazanie metody jest zawsze konieczne gdy robimy request inny niż typu GET
+      headers: { "Content-Type": "application/json" }, // w headerach inforumujemy o tym jaki typ danych przesyłamy w requescie my tutaj wysyłamy JSONa
+      body: JSON.stringify(todoToCreate), // do klucza body (pamiętasz że request HTTP składa się z nagłówków/heaederów oraz z body/ciała) przekazujemy informacje/dane które chcemy wysłać do backendu
+      // w naszym przypadku wysyłamy obiekt todo w formacie JSON
+    })
+      .then(() => {
+        alert(
+          "Udało się stworzyć nowe todo! Nie wierzysz? sprawdź zakładkę todolist :)"
+        );
+      })
+      .catch(() => {
+        console.error("Coś poszło nie tak :/");
+      });
+
+    // resetowanie stanu do wartości początkowych
+    setTodoName("");
+    setStatus("todo");
   };
 
   return (

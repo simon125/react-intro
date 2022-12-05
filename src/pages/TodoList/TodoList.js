@@ -8,6 +8,17 @@ export const TodoList = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [filterBy, setFilterBy] = useState("");
+  const [refetchAfterDelete, setRefetchAfterDelete] = useState(false);
+  const [todoToEdit, setTodoToEdit] = useState(null);
+
+  const handleChangeEditForm = (event) => {
+    console.log(event.target.name);
+    const updatedTodo = {
+      ...todoToEdit,
+      [event.target.name]: event.target.value,
+    };
+    setTodoToEdit(updatedTodo);
+  };
 
   // ten useEffect wykonuje się tylko raz przy zamontowaniu komponentu
   // ponieważ ma pustą tablice z zależnościami (2 paremetr w useEffect)
@@ -57,7 +68,7 @@ export const TodoList = () => {
       .then((response) => response.json())
       .then((data) => setTodos(data))
       .finally(() => setIsLoading(false));
-  }, [filterBy]);
+  }, [filterBy, refetchAfterDelete]);
 
   const handleDeleteClick = (idOfTodoToDelete) => {
     /**
@@ -113,14 +124,41 @@ export const TodoList = () => {
      * },[zmienna1, zmienna2, zmienna3])
      *
      */
+    fetch(`http://localhost:4000/todos/${idOfTodoToDelete}`, {
+      method: "DELETE",
+    }).then(() => {
+      setRefetchAfterDelete(!refetchAfterDelete);
+    });
   };
 
-  const handleEditClick = () => {
+  const handleEditClick = (todoToEdit) => {
+    setTodoToEdit(todoToEdit);
     setOpenModal(true);
   };
 
   const handleFilterChange = (event) => {
     setFilterBy(event.target.value);
+  };
+
+  const handleEditConfirmClick = () => {
+    // 1) request updatujący
+    fetch(`http://localhost:4000/todos/${todoToEdit.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todoToEdit),
+    })
+      .then(() => {
+        setRefetchAfterDelete(!refetchAfterDelete);
+        alert("Pomyślnie zupdatowałś rekord");
+      })
+      .catch(() => {
+        console.error("Something went wrong :/");
+      })
+      .finally(() => {
+        setOpenModal(false);
+      });
   };
 
   return (
@@ -204,14 +242,22 @@ export const TodoList = () => {
                   todoName={todo.todoName}
                   status={todo.status}
                   onDeleteClick={() => handleDeleteClick(todo.id)}
-                  onEditClick={handleEditClick}
+                  onEditClick={() => handleEditClick(todo)}
                 />
               );
             })}
           </tbody>
         </table>
       )}
-      {openModal && <EditTodoModal onCancelClick={() => setOpenModal(false)} />}
+      <pre>{JSON.stringify(todoToEdit || {}, null, 2)}</pre>
+      {openModal && (
+        <EditTodoModal
+          todoToEdit={todoToEdit}
+          onEditConfirmClick={handleEditConfirmClick}
+          onEditFormChange={handleChangeEditForm}
+          onCancelClick={() => setOpenModal(false)}
+        />
+      )}
     </div>
   );
 };

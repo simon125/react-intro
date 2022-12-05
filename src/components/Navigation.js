@@ -1,55 +1,25 @@
 import React from "react";
 import classes from "./Navigation.module.css";
+import { Link } from "react-router-dom";
 
-export const Navigation = (props) => {
-  const { onNavItemChange, currentPage } = props;
-  console.log("Navigation sie renderuje");
+export const Navigation = () => {
   return (
     <div className={classes.navigationContainer}>
-      <label>
+      <Link to="/" className={classes.navItem}>
         Home
-        <input
-          className={classes.navItem}
-          type="radio"
-          name="navItem"
-          checked={currentPage === "home"}
-          value="home"
-          onChange={onNavItemChange}
-        />
-      </label>
-      <label>
+      </Link>
+      <Link to="/todo-form" className={classes.navItem}>
         Todo Form
-        <input
-          className={classes.navItem}
-          type="radio"
-          name="navItem"
-          checked={currentPage === "todoform"}
-          value="todoform"
-          onChange={onNavItemChange}
-        />
-      </label>
-      <label>
+      </Link>
+      <Link to="/todolist" className={classes.navItem}>
         Todo List
-        <input
-          className={classes.navItem}
-          type="radio"
-          name="navItem"
-          checked={currentPage === "todolist"}
-          value="todolist"
-          onChange={onNavItemChange}
-        />
-      </label>
-      <label>
+      </Link>
+      <Link to="/statistics" className={classes.navItem}>
         Statistics
-        <input
-          className={classes.navItem}
-          type="radio"
-          name="navItem"
-          checked={currentPage === "statistics"}
-          value="statistics"
-          onChange={onNavItemChange}
-        />
-      </label>
+      </Link>
+      <Link to="/counter" className={classes.navItem}>
+        Counter
+      </Link>
     </div>
   );
 };
