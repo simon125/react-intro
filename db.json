@@ -26,10 +26,25 @@
     }
   ],
   "todos": [
-    { "todoName": "Poczuyć się JSa", "id": "1", "status": "done" },
-    { "todoName": "Poczuyć się HTMLa", "id": "2", "status": "in-progress" },
-    { "todoName": "Poczuyć się CSSa", "id": "4", "status": "todo" },
-    { "todoName": "Poczuyć się Reacta", "id": "5", "status": "in-progress" },
-    { "todoName": "Poczuyć się Reduxa", "id": "6", "status": "todo" }
+    {
+      "todoName": "Poczuyć się Reacta i JSA i TSa",
+      "id": "5",
+      "status": "todo"
+    },
+    {
+      "todoName": "Poczuyć się Reduxa",
+      "id": "6",
+      "status": "todo"
+    },
+    {
+      "todoName": "Poczuyć się Reduxa123",
+      "id": "6qweqw",
+      "status": "done"
+    },
+    {
+      "todoName": "test123",
+      "status": "in-progress",
+      "id": "SqGlfcD"
+    }
   ]
 }

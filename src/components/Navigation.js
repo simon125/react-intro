@@ -17,6 +17,15 @@ export const Navigation = () => {
       <Link to="/statistics" className={classes.navItem}>
         Statistics
       </Link>
+      <Link to="/user-creator/1" className={classes.navItem}>
+        User Creator 1
+      </Link>
+      <Link to="/user-creator/2" className={classes.navItem}>
+        User Creator 2
+      </Link>
+      <Link to="/user-creator/kfuwheiufhwuie" className={classes.navItem}>
+        User Creator który nie istnieje
+      </Link>
       <Link to="/counter" className={classes.navItem}>
         Counter
       </Link>

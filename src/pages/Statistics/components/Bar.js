@@ -19,11 +19,14 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["Todo", "In Progress", "Done"];
-
 const data = {
-  labels,
+  labels: ["Todo", "In Progress", "Done"],
   datasets: [
+    {
+      label: "Tasks status",
+      data: [1, 2, 4],
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
     {
       label: "Tasks status",
       data: [1, 2, 4],
@@ -34,7 +37,7 @@ const data = {
 
 export const Bar = () => {
   return (
-    <div style={{ width: "25vw", margin: "100px auto" }}>
+    <div style={{ width: "50vw", margin: "100px auto" }}>
       <BarChart data={data} />
     </div>
   );

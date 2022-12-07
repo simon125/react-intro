@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "./components/Bar";
 import { Doughnut } from "./components/Doughnut";
 
 export const Statistics = () => {
-  useEffect(() => {
-    console.log("Montuje component Statistics");
+  const [todos, setTodos] = useState([]);
 
-    return () => {
-      console.log("Odmontowywuje component Statistics");
-    };
+  useEffect(() => {
+    fetch("http://localhost:4000/todos")
+      .then((response) => response.json())
+      .then((data) => setTodos(data));
   }, []);
 
   return (
@@ -21,7 +21,7 @@ export const Statistics = () => {
           <input type="checkbox" /> Show data in Bar
         </label>
       </div>
-      <Doughnut />
+      <Doughnut todos={todos} />
       <Bar />
     </div>
   );
